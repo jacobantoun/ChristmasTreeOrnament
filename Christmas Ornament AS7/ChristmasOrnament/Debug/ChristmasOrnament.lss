@@ -1,0 +1,293 @@
+
+ChristmasOrnament.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000166  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000004  00800060  00000166  000001fa  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000002  00800064  00800064  000001fe  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  000001fe  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000230  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000020  00000000  00000000  0000026c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   000006bc  00000000  00000000  0000028c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000518  00000000  00000000  00000948  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   000002f5  00000000  00000000  00000e60  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000024  00000000  00000000  00001158  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    0000030e  00000000  00000000  0000117c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    000001a4  00000000  00000000  0000148a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000028  00000000  00000000  0000162e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	10 c0       	rjmp	.+32     	; 0x22 <__ctors_end>
+   2:	2a c0       	rjmp	.+84     	; 0x58 <__bad_interrupt>
+   4:	29 c0       	rjmp	.+82     	; 0x58 <__bad_interrupt>
+   6:	28 c0       	rjmp	.+80     	; 0x58 <__bad_interrupt>
+   8:	27 c0       	rjmp	.+78     	; 0x58 <__bad_interrupt>
+   a:	26 c0       	rjmp	.+76     	; 0x58 <__bad_interrupt>
+   c:	25 c0       	rjmp	.+74     	; 0x58 <__bad_interrupt>
+   e:	24 c0       	rjmp	.+72     	; 0x58 <__bad_interrupt>
+  10:	23 c0       	rjmp	.+70     	; 0x58 <__bad_interrupt>
+  12:	22 c0       	rjmp	.+68     	; 0x58 <__bad_interrupt>
+  14:	21 c0       	rjmp	.+66     	; 0x58 <__bad_interrupt>
+  16:	20 c0       	rjmp	.+64     	; 0x58 <__bad_interrupt>
+  18:	1f c0       	rjmp	.+62     	; 0x58 <__bad_interrupt>
+  1a:	1e c0       	rjmp	.+60     	; 0x58 <__bad_interrupt>
+  1c:	1d c0       	rjmp	.+58     	; 0x58 <__bad_interrupt>
+  1e:	1c c0       	rjmp	.+56     	; 0x58 <__bad_interrupt>
+  20:	1b c0       	rjmp	.+54     	; 0x58 <__bad_interrupt>
+
+00000022 <__ctors_end>:
+  22:	11 24       	eor	r1, r1
+  24:	1f be       	out	0x3f, r1	; 63
+  26:	cf e5       	ldi	r28, 0x5F	; 95
+  28:	d1 e0       	ldi	r29, 0x01	; 1
+  2a:	de bf       	out	0x3e, r29	; 62
+  2c:	cd bf       	out	0x3d, r28	; 61
+
+0000002e <__do_copy_data>:
+  2e:	10 e0       	ldi	r17, 0x00	; 0
+  30:	a0 e6       	ldi	r26, 0x60	; 96
+  32:	b0 e0       	ldi	r27, 0x00	; 0
+  34:	e6 e6       	ldi	r30, 0x66	; 102
+  36:	f1 e0       	ldi	r31, 0x01	; 1
+  38:	02 c0       	rjmp	.+4      	; 0x3e <__SP_H__>
+  3a:	05 90       	lpm	r0, Z+
+  3c:	0d 92       	st	X+, r0
+  3e:	a4 36       	cpi	r26, 0x64	; 100
+  40:	b1 07       	cpc	r27, r17
+  42:	d9 f7       	brne	.-10     	; 0x3a <__do_copy_data+0xc>
+
+00000044 <__do_clear_bss>:
+  44:	20 e0       	ldi	r18, 0x00	; 0
+  46:	a4 e6       	ldi	r26, 0x64	; 100
+  48:	b0 e0       	ldi	r27, 0x00	; 0
+  4a:	01 c0       	rjmp	.+2      	; 0x4e <.do_clear_bss_start>
+
+0000004c <.do_clear_bss_loop>:
+  4c:	1d 92       	st	X+, r1
+
+0000004e <.do_clear_bss_start>:
+  4e:	a6 36       	cpi	r26, 0x66	; 102
+  50:	b2 07       	cpc	r27, r18
+  52:	e1 f7       	brne	.-8      	; 0x4c <.do_clear_bss_loop>
+  54:	02 d0       	rcall	.+4      	; 0x5a <main>
+  56:	85 c0       	rjmp	.+266    	; 0x162 <_exit>
+
+00000058 <__bad_interrupt>:
+  58:	d3 cf       	rjmp	.-90     	; 0x0 <__vectors>
+
+0000005a <main>:
+};
+uint16_t followPattern = 0b0000000000000000;
+
+int main(void)
+{
+    DDRA = 0xFF; // All Port A output
+  5a:	8f ef       	ldi	r24, 0xFF	; 255
+  5c:	8a bb       	out	0x1a, r24	; 26
+	DDRB |= (1 << 0); // PB0 output
+  5e:	b8 9a       	sbi	0x17, 0	; 23
+	PORTA = 0;
+  60:	1b ba       	out	0x1b, r1	; 27
+	PORTB &= ~(1 << 0);
+  62:	c0 98       	cbi	0x18, 0	; 24
+    while (1) 
+    {
+		
+		for(int i = 0; i<9; i++) {
+			followPattern = followPattern | (1 << i);
+  64:	61 e0       	ldi	r22, 0x01	; 1
+  66:	70 e0       	ldi	r23, 0x00	; 0
+			PORTA = followPattern;
+			PORTB = (followPattern >> 8);
+			_delay_ms(300);
+		}
+		
+		PORTA = ledPattern[0];
+  68:	e0 e6       	ldi	r30, 0x60	; 96
+  6a:	f0 e0       	ldi	r31, 0x00	; 0
+	PORTA = 0;
+	PORTB &= ~(1 << 0);
+    while (1) 
+    {
+		
+		for(int i = 0; i<9; i++) {
+  6c:	20 e0       	ldi	r18, 0x00	; 0
+  6e:	30 e0       	ldi	r19, 0x00	; 0
+			followPattern = followPattern | (1 << i);
+  70:	ab 01       	movw	r20, r22
+  72:	02 2e       	mov	r0, r18
+  74:	02 c0       	rjmp	.+4      	; 0x7a <main+0x20>
+  76:	44 0f       	add	r20, r20
+  78:	55 1f       	adc	r21, r21
+  7a:	0a 94       	dec	r0
+  7c:	e2 f7       	brpl	.-8      	; 0x76 <main+0x1c>
+  7e:	80 91 64 00 	lds	r24, 0x0064	; 0x800064 <__data_end>
+  82:	90 91 65 00 	lds	r25, 0x0065	; 0x800065 <__data_end+0x1>
+  86:	84 2b       	or	r24, r20
+  88:	95 2b       	or	r25, r21
+  8a:	90 93 65 00 	sts	0x0065, r25	; 0x800065 <__data_end+0x1>
+  8e:	80 93 64 00 	sts	0x0064, r24	; 0x800064 <__data_end>
+			PORTA = followPattern;
+  92:	8b bb       	out	0x1b, r24	; 27
+			PORTB = (followPattern >> 8);
+  94:	80 91 65 00 	lds	r24, 0x0065	; 0x800065 <__data_end+0x1>
+  98:	88 bb       	out	0x18, r24	; 24
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  9a:	4f e5       	ldi	r20, 0x5F	; 95
+  9c:	8a ee       	ldi	r24, 0xEA	; 234
+  9e:	90 e0       	ldi	r25, 0x00	; 0
+  a0:	41 50       	subi	r20, 0x01	; 1
+  a2:	80 40       	sbci	r24, 0x00	; 0
+  a4:	90 40       	sbci	r25, 0x00	; 0
+  a6:	e1 f7       	brne	.-8      	; 0xa0 <main+0x46>
+  a8:	00 c0       	rjmp	.+0      	; 0xaa <main+0x50>
+  aa:	00 00       	nop
+	PORTA = 0;
+	PORTB &= ~(1 << 0);
+    while (1) 
+    {
+		
+		for(int i = 0; i<9; i++) {
+  ac:	2f 5f       	subi	r18, 0xFF	; 255
+  ae:	3f 4f       	sbci	r19, 0xFF	; 255
+  b0:	29 30       	cpi	r18, 0x09	; 9
+  b2:	31 05       	cpc	r19, r1
+  b4:	e9 f6       	brne	.-70     	; 0x70 <main+0x16>
+  b6:	49 e0       	ldi	r20, 0x09	; 9
+  b8:	50 e0       	ldi	r21, 0x00	; 0
+			PORTA = followPattern;
+			PORTB = (followPattern >> 8);
+			_delay_ms(300);
+		}
+		for(int j = 9; j >= 0; j--) {
+			followPattern = followPattern &= ~(1 << j);
+  ba:	cb 01       	movw	r24, r22
+  bc:	04 2e       	mov	r0, r20
+  be:	02 c0       	rjmp	.+4      	; 0xc4 <main+0x6a>
+  c0:	88 0f       	add	r24, r24
+  c2:	99 1f       	adc	r25, r25
+  c4:	0a 94       	dec	r0
+  c6:	e2 f7       	brpl	.-8      	; 0xc0 <main+0x66>
+  c8:	80 95       	com	r24
+  ca:	90 95       	com	r25
+  cc:	20 91 64 00 	lds	r18, 0x0064	; 0x800064 <__data_end>
+  d0:	30 91 65 00 	lds	r19, 0x0065	; 0x800065 <__data_end+0x1>
+  d4:	82 23       	and	r24, r18
+  d6:	93 23       	and	r25, r19
+  d8:	90 93 65 00 	sts	0x0065, r25	; 0x800065 <__data_end+0x1>
+  dc:	80 93 64 00 	sts	0x0064, r24	; 0x800064 <__data_end>
+			PORTA = followPattern;
+  e0:	8b bb       	out	0x1b, r24	; 27
+			PORTB = (followPattern >> 8);
+  e2:	80 91 65 00 	lds	r24, 0x0065	; 0x800065 <__data_end+0x1>
+  e6:	88 bb       	out	0x18, r24	; 24
+  e8:	2f e5       	ldi	r18, 0x5F	; 95
+  ea:	8a ee       	ldi	r24, 0xEA	; 234
+  ec:	90 e0       	ldi	r25, 0x00	; 0
+  ee:	21 50       	subi	r18, 0x01	; 1
+  f0:	80 40       	sbci	r24, 0x00	; 0
+  f2:	90 40       	sbci	r25, 0x00	; 0
+  f4:	e1 f7       	brne	.-8      	; 0xee <main+0x94>
+  f6:	00 c0       	rjmp	.+0      	; 0xf8 <main+0x9e>
+  f8:	00 00       	nop
+			followPattern = followPattern | (1 << i);
+			PORTA = followPattern;
+			PORTB = (followPattern >> 8);
+			_delay_ms(300);
+		}
+		for(int j = 9; j >= 0; j--) {
+  fa:	41 50       	subi	r20, 0x01	; 1
+  fc:	51 09       	sbc	r21, r1
+  fe:	e8 f6       	brcc	.-70     	; 0xba <main+0x60>
+			PORTA = followPattern;
+			PORTB = (followPattern >> 8);
+			_delay_ms(300);
+		}
+		
+		PORTA = ledPattern[0];
+ 100:	80 81       	ld	r24, Z
+ 102:	8b bb       	out	0x1b, r24	; 27
+		PORTB |= (1 << PORTB0);
+ 104:	c0 9a       	sbi	0x18, 0	; 24
+ 106:	4f e3       	ldi	r20, 0x3F	; 63
+ 108:	8d e0       	ldi	r24, 0x0D	; 13
+ 10a:	93 e0       	ldi	r25, 0x03	; 3
+ 10c:	41 50       	subi	r20, 0x01	; 1
+ 10e:	80 40       	sbci	r24, 0x00	; 0
+ 110:	90 40       	sbci	r25, 0x00	; 0
+ 112:	e1 f7       	brne	.-8      	; 0x10c <main+0xb2>
+ 114:	00 c0       	rjmp	.+0      	; 0x116 <main+0xbc>
+ 116:	00 00       	nop
+		_delay_ms(1000);
+		PORTA = ledPattern[1];
+ 118:	81 81       	ldd	r24, Z+1	; 0x01
+ 11a:	8b bb       	out	0x1b, r24	; 27
+		PORTB &= ~(1 << PORTB0);	
+ 11c:	c0 98       	cbi	0x18, 0	; 24
+ 11e:	2f e3       	ldi	r18, 0x3F	; 63
+ 120:	4d e0       	ldi	r20, 0x0D	; 13
+ 122:	83 e0       	ldi	r24, 0x03	; 3
+ 124:	21 50       	subi	r18, 0x01	; 1
+ 126:	40 40       	sbci	r20, 0x00	; 0
+ 128:	80 40       	sbci	r24, 0x00	; 0
+ 12a:	e1 f7       	brne	.-8      	; 0x124 <main+0xca>
+ 12c:	00 c0       	rjmp	.+0      	; 0x12e <main+0xd4>
+ 12e:	00 00       	nop
+		_delay_ms(1000);
+		PORTA = ledPattern[2];
+ 130:	82 81       	ldd	r24, Z+2	; 0x02
+ 132:	8b bb       	out	0x1b, r24	; 27
+		PORTB |= (1 << PORTB0);
+ 134:	c0 9a       	sbi	0x18, 0	; 24
+ 136:	9f e3       	ldi	r25, 0x3F	; 63
+ 138:	2d e0       	ldi	r18, 0x0D	; 13
+ 13a:	43 e0       	ldi	r20, 0x03	; 3
+ 13c:	91 50       	subi	r25, 0x01	; 1
+ 13e:	20 40       	sbci	r18, 0x00	; 0
+ 140:	40 40       	sbci	r20, 0x00	; 0
+ 142:	e1 f7       	brne	.-8      	; 0x13c <main+0xe2>
+ 144:	00 c0       	rjmp	.+0      	; 0x146 <main+0xec>
+ 146:	00 00       	nop
+		_delay_ms(1000);
+		PORTA = ledPattern[3];
+ 148:	83 81       	ldd	r24, Z+3	; 0x03
+ 14a:	8b bb       	out	0x1b, r24	; 27
+		PORTB &= ~(1 << PORTB0);
+ 14c:	c0 98       	cbi	0x18, 0	; 24
+ 14e:	8f e3       	ldi	r24, 0x3F	; 63
+ 150:	9d e0       	ldi	r25, 0x0D	; 13
+ 152:	23 e0       	ldi	r18, 0x03	; 3
+ 154:	81 50       	subi	r24, 0x01	; 1
+ 156:	90 40       	sbci	r25, 0x00	; 0
+ 158:	20 40       	sbci	r18, 0x00	; 0
+ 15a:	e1 f7       	brne	.-8      	; 0x154 <main+0xfa>
+ 15c:	00 c0       	rjmp	.+0      	; 0x15e <main+0x104>
+ 15e:	00 00       	nop
+ 160:	85 cf       	rjmp	.-246    	; 0x6c <main+0x12>
+
+00000162 <_exit>:
+ 162:	f8 94       	cli
+
+00000164 <__stop_program>:
+ 164:	ff cf       	rjmp	.-2      	; 0x164 <__stop_program>
