@@ -1,4 +1,4 @@
-# ChristmasTreeOrnament
+# Christmas Tree Ornament
 I made these Christmas tree ornaments for friends and coworkers. KiCad PCB files and Source Code included.
 
 Right now all the ornament does is flash the lights in a line, then a defined pattern. Nothing special.
